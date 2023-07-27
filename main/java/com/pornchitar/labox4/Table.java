@@ -4,13 +4,15 @@
  */
 package com.pornchitar.labox4;
 
+import java.util.Scanner;
+
 /**
  *
  * @author ASUS
  */
 public class Table {
 
-    private String[][] table = {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
+     String[][] table = {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
     private Player player1, player2, currentPlayer;
     private int row, col;
     private int count;
@@ -119,12 +121,32 @@ public class Table {
         }
     }
     
+    public void setTable(String[][] table) {
+        this.table = table;
+    }
+    
     public void reset() {
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table.length; j++) {
-                table[i][j] = "-";
-            }
-        }
+        setTable(table);
         currentPlayer = player2;
+        count = 0;
+    }
+    
+    public boolean endGame() {
+        System.out.print("Exit !!!??? (y/n): ");
+        Scanner kb = new Scanner(System.in);
+        String continues = kb.nextLine().toLowerCase();
+
+        while (!continues.equals("n") && !continues.equals("y")) {
+
+            System.out.print("Exit !!!??? (y/n): ");
+            continues = kb.nextLine().toLowerCase();
+        }
+        if (continues.equals("y")) {
+            System.out.println("GoodBye...");
+            return false;
+        }
+        reset();
+        return true;
+
     }
 }

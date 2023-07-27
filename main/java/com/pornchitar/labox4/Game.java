@@ -11,56 +11,58 @@ import java.util.Scanner;
  * @author ASUS
  */
 public class Game {
+
     private Player player1, player2;
-    private Table table;
-    
+    Table table = new Table(player1, player2);
+    String[][] t = table.getTable();
+
     public Game() {
-        player1 = new Player("X",0,0,0);
-        player2 = new Player("O",0,0,0);
-        
+        player1 = new Player("X", 0, 0, 0);
+        player2 = new Player("O", 0, 0, 0);
+
     }
-    
-    public void play(){
+
+    public void play() {
         boolean isFinish = false;
         printWelcome();
         newGame();
-        while(!isFinish){
+        while (!isFinish) {
             printTable();
             printTurn();
             inputRowCol();
-            if(table.checkWin()){
+            if (table.checkWin()) {
                 printTable();
                 printWinner();
                 printPlayers();
-                if (endGame()) {
-//                table.reset();
-            } else {
-                isFinish = false;
+                if (table.endGame()) {
+                    t = table.getTable();
+                } else {
+                    isFinish = false;
 
-            }
+                }
 //                isFinish = true;
             }
-            if(table.checkDraw()){
+            if (table.checkDraw()) {
                 printTable();
                 printDraw();
                 printPlayers();
-                if (endGame()) {
+                if (table.endGame()) {
 //                table.reset();
-            } else {
-                isFinish = false;
+                } else {
+                    isFinish = false;
 
-            }
+                }
 //                isFinish = true;
             }
             table.switchPlayer();
         }
     }
 
-    private void printWelcome(){
+    private void printWelcome() {
         System.out.println("Welcome to OX GAME");
     }
-    
-    private void printTable(){
+
+    private void printTable() {
         String[][] t = table.getTable();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -71,12 +73,12 @@ public class Game {
 
         }
     }
-    
-    private void printTurn(){
+
+    private void printTurn() {
         System.out.println(table.getCurrentPlayer().getSymbol() + " Turn");
     }
-    
-    private void inputRowCol(){
+
+    private void inputRowCol() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please Input row&Col :");
         int row = sc.nextInt();
@@ -89,36 +91,16 @@ public class Game {
     }
 
     private void printWinner() {
-        System.out.println(table.getCurrentPlayer().getSymbol()+" Win!!!");
+        System.out.println(table.getCurrentPlayer().getSymbol() + " Win!!!");
     }
 
     private void printDraw() {
         System.out.println(" Draw!!!");
     }
-    
-    private void printPlayers(){
-        System.out.println( player1);
-        System.out.println( player2);
+
+    private void printPlayers() {
+        System.out.println(player1);
+        System.out.println(player2);
     }
-    
-    public boolean endGame() {
-        System.out.print("Exit !!!??? (y/n): ");
-        Scanner kb = new Scanner(System.in);
-        String continues = kb.nextLine().toLowerCase();
 
-        while (!continues.equals("n") && !continues.equals("y")) {
-
-            System.out.print("Exit !!!??? (y/n): ");
-            continues = kb.nextLine().toLowerCase();
-        }
-        if (continues.equals("y")) {
-            System.out.println("GoodBye...");
-            return false;
-        }
-        table.reset();
-        return true;
-
-    }
-    
-    
 }
