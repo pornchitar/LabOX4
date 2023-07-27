@@ -103,4 +103,12 @@ public class Table {
             player1.lose();
         }
     }
+
+    void switchPlayer() {
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        }
+    }
 }

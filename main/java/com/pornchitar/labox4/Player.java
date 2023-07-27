@@ -12,6 +12,13 @@ public class Player {
     private char symbol;
     private int winCount, loseCount, drawCount;
 
+    public Player(char symbol, int winCount, int loseCount, int drawCount) {
+        this.symbol = symbol;
+        this.winCount = winCount;
+        this.loseCount = loseCount;
+        this.drawCount = drawCount;
+    }
+
     public char getSymbol() {
         return symbol;
     }

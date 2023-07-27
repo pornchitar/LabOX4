@@ -13,10 +13,11 @@ import java.util.Scanner;
 public class Game {
     private Player player1, player2;
     private Table table;
-
+    
     public Game() {
-        player1 = new Player('X');
-        player2 = new Player('O');
+        player1 = new Player('X',0,0,0);
+        player2 = new Player('O',0,0,0);
+        
     }
     
     public void play(){
@@ -41,7 +42,7 @@ public class Game {
     }
 
     private void printWelcome(){
-        System.out.println("OX GAME");
+        System.out.println("Welcome to OX GAME");
     }
     
     private void printTable(){
