@@ -10,7 +10,7 @@ package com.pornchitar.labox4;
  */
 public class Table {
 
-    private char[][] table = {{'-', '-', '-'}, {'-', '-', '-'}, {'-', '-', '-'}};
+    private String[][] table = {{"-", "-", "-"}, {"-", "-", "-"}, {"-", "-", "-"}};
     private Player player1, player2, currentPlayer;
     private int row, col;
     private int count;
@@ -22,7 +22,7 @@ public class Table {
 
     }
 
-    public char[][] getTable() {
+    public String[][] getTable() {
         return table;
     }
 
@@ -31,7 +31,7 @@ public class Table {
     }
 
     public boolean setRowCol(int row, int col) {
-        if (table[row - 1][col - 1] == '-') {
+        if (table[row - 1][col - 1] == "-") {
             table[row - 1][col - 1] = currentPlayer.getSymbol();
             this.row = row;
             this.col = col;
@@ -75,11 +75,11 @@ public class Table {
     }
 
     public boolean checkRow() {
-        return table[row-1][0] != '-' && table[row-1][0] == table[row-1][1] && table[row-1][0] == table[row-1][2];
+        return table[row-1][0] != "-" && table[row-1][0] == table[row-1][1] && table[row-1][0] == table[row-1][2];
     }
 
-    public boolean checkCol() {
-        return false;
+    public boolean checkCol() {        
+        return table[0][col-1] != "-" && table[0][col-1]== table[1][col-1] && table[0][col-1]== table[2][col-1];
     }
 
     public boolean checkX1() {
@@ -91,6 +91,13 @@ public class Table {
     }
 
     public boolean checkDiagonals() {
+        if (table[0][0].equals(currentPlayer.getSymbol()) && table[1][1].equals(currentPlayer.getSymbol()) && table[2][2].equals(currentPlayer.getSymbol())) {
+            return true;
+        }
+
+        if (table[0][2].equals(currentPlayer.getSymbol()) && table[1][1].equals(currentPlayer.getSymbol()) && table[2][0].equals(currentPlayer.getSymbol())) {
+            return true;
+        }
         return false;
     }
     

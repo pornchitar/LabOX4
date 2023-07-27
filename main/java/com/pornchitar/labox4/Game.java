@@ -15,8 +15,8 @@ public class Game {
     private Table table;
     
     public Game() {
-        player1 = new Player('X',0,0,0);
-        player2 = new Player('O',0,0,0);
+        player1 = new Player("X",0,0,0);
+        player2 = new Player("O",0,0,0);
         
     }
     
@@ -31,13 +31,16 @@ public class Game {
             if(table.checkWin()){
                 printTable();
                 printWinner();
+                printPlayers();
                 isFinish = true;
             }
             if(table.checkDraw()){
                 printTable();
                 printDraw();
+                printPlayers();
                 isFinish = true;
             }
+            table.switchPlayer();
         }
     }
 
@@ -46,7 +49,7 @@ public class Game {
     }
     
     private void printTable(){
-        char[][] t = table.getTable();
+        String[][] t = table.getTable();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.print(t[i][j] + " ");
@@ -74,10 +77,15 @@ public class Game {
     }
 
     private void printWinner() {
-        System.out.println(table.getCurrentPlayer()+" Win!!!");
+        System.out.println(table.getCurrentPlayer().getSymbol()+" Win!!!");
     }
 
     private void printDraw() {
         System.out.println(" Draw!!!");
+    }
+    
+    private void printPlayers(){
+        System.out.println( player1);
+        System.out.println( player2);
     }
 }
