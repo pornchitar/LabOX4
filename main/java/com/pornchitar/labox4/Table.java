@@ -118,4 +118,13 @@ public class Table {
             currentPlayer = player1;
         }
     }
+    
+    public void reset() {
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
+                table[i][j] = "-";
+            }
+        }
+        currentPlayer = player2;
+    }
 }

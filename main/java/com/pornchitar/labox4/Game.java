@@ -32,13 +32,25 @@ public class Game {
                 printTable();
                 printWinner();
                 printPlayers();
-                isFinish = true;
+                if (endGame()) {
+//                table.reset();
+            } else {
+                isFinish = false;
+
+            }
+//                isFinish = true;
             }
             if(table.checkDraw()){
                 printTable();
                 printDraw();
                 printPlayers();
-                isFinish = true;
+                if (endGame()) {
+//                table.reset();
+            } else {
+                isFinish = false;
+
+            }
+//                isFinish = true;
             }
             table.switchPlayer();
         }
@@ -88,4 +100,25 @@ public class Game {
         System.out.println( player1);
         System.out.println( player2);
     }
+    
+    public boolean endGame() {
+        System.out.print("Exit !!!??? (y/n): ");
+        Scanner kb = new Scanner(System.in);
+        String continues = kb.nextLine().toLowerCase();
+
+        while (!continues.equals("n") && !continues.equals("y")) {
+
+            System.out.print("Exit !!!??? (y/n): ");
+            continues = kb.nextLine().toLowerCase();
+        }
+        if (continues.equals("y")) {
+            System.out.println("GoodBye...");
+            return false;
+        }
+        table.reset();
+        return true;
+
+    }
+    
+    
 }
